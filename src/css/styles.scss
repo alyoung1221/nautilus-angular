@@ -1,175 +1,51 @@
-/* You can add global styles to this file, and also import other style files */
 @use 'variables';
 @use 'mixins';
 @use 'inheritance';
 
-*:focus {
-    outline: 0;
-}
+/*Focus*/
+    *:focus {
+        outline: 0;
+    }
 
-body {
-    background: variables.$bg-color;
-    color: variables.$text-color;
-    font-family: variables.$main-font;
-}
-.body-container {
-    width: 98%;
-    margin: 30px auto;
-}
-a {    
-    color: variables.$text-color;
-    text-decoration: none;
-}
-p, form * {
-    font-family: variables.$sub-font;
-}
-section h1 {
-    font-size: 2em;
-}
-.sr-only {
-    border: 0;
-    clip: rect(0,0,0,0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-}
+/*Body*/
+    body {
+        background: variables.$bg-color;
+        color: variables.$text-color;
+        font-family: variables.$main-font;
+    }
 
-/*Text Styles*/
+/*Containers*/
+    .body-container {
+        width: 98%;
+        margin: 30px auto;
+    }
+
+/*Text*/
+    .sr-only {
+        border: 0;
+        clip: rect(0,0,0,0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }    
     .center-text {
         text-align: center;
     }
     .uppercase {
         @include mixins.uppercase();
     }
+    a {    
+        color: variables.$text-color;
+        text-decoration: none;
+    }
+    p {
+        font-family: variables.$sub-font;
+    }
 
 /*Icons*/
     .material-icons {
         vertical-align: middle;
-    }
-
-/*Dropdowns*/
-    .dropdown ul {
-        @include mixins.invisible();
-    }
-    .dropdown:hover ul {
-        @include mixins.visible();
-    }
-
-/*Nav*/ 
-    nav {
-        ul {
-            list-style: none;
-            margin: 0;
-            @include mixins.uppercase();
-        }
-        > ul > li:not(:last-of-type) {
-            margin-right: 20px;
-        }
-        li:hover > a, li:focus-within > a {
-            @include mixins.gradient();
-        }
-        .dropdown ul {
-            margin-top: 20px;
-            padding: 0;
-        }
-        .dropdown ul li {
-            margin-bottom: 20px;
-        }
-    }
-
-/*Form*/
-    ::placeholder {
-        color: #d8d8d8;
-        opacity: .8;
-        text-align: left;
-        @include mixins.uppercase();
-    }
-    form {
-        > * {
-            display: block;
-            margin-bottom: 30px;
-            @include mixins.uppercase();
-        }
-        input, select, textarea {
-            font: 300 .95em variables.$sub-font;
-            background: transparent;
-            border: 0;
-            border-bottom: 1px solid hsla(0, 0%, 100%, .5);
-            color: silver;
-            padding: 4px 0;
-        }
-        input:not([type=checkbox]):not([type=radio]), select, textarea {
-            width: 100%;
-        }
-        input:not([type=submit]) {
-            text-indent: 5px; 
-        }
-        select {
-            height: 28px;
-        }
-        select option, textarea {
-            text-transform: initial;
-        }
-        select option:not(:disabled) {
-            color: #000;
-        }
-        textarea {
-            height: 120px;
-            resize: none;
-        }
-        input[type=submit] {
-            border: 1px solid hsla(0,0%,100%,.5);
-            cursor: pointer;
-            height: 40px;
-            width: 120px;
-            margin-top: 35px;
-        }
-        input[type=submit]:hover {
-            border-color: slategray;
-        }        
-    }
-
-    /*Input Containers*/
-        .form-input {
-            input {
-                width: 240px !important;
-            }
-            input:first-of-type {
-                margin-right: 20px;
-            }
-        }
-
-/*Contact*/
-    #contact {
-        [type=submit] {
-            height: 45px;
-            width: 100%;
-            margin-top: 50px;
-        }
-    }
-    address {
-        font-size: 14.5px;
-        margin-top: 35px;
-        
-        .material-icons {
-            margin-right: 20px;
-        }
-    }
-
-/*Footer*/
-    footer {
-        ul {
-            line-height: 1.5;
-            list-style: square;
-        }
-    }
-    #subscribe {
-        width: 300px;
-        
-        > * {
-            width: 100%;
-        }
     }
