@@ -1,0 +1,21 @@
+// Mixins
+    @mixin invisible() {
+        position: absolute;
+        left: -9999px;
+    }
+
+    @mixin visible() {
+        position: initial;
+        left: auto;
+    }
+
+    @mixin uppercase() {
+        text-transform: uppercase;
+    }
+
+    @mixin gradient() {
+        background: -webkit-linear-gradient(#EEE, #BEDFFF, lightslategray);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }

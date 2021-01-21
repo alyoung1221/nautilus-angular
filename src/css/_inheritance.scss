@@ -1,0 +1,20 @@
+/*Flex*/
+    %flex {
+        display: -webkit-box; 
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex; 
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .flex {
+        @extend %flex;
+    }
+    .space-between {
+        @extend %flex;
+        justify-content: space-between;
+    }
+    .justify-center {
+        @extend %flex;
+        justify-content: center;
+    }
