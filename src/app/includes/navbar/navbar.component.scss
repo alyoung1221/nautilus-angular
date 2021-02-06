@@ -1,0 +1,42 @@
+/*Nav*/ 
+@use '/src/css/variables';
+@use '/src/css/mixins';
+
+header {
+    @include mixins.uppercase();
+}
+nav {
+    margin-top: 20px;
+    
+    ul {
+        list-style: none;
+        margin: 0;
+    }
+    > ul > li:not(:last-of-type) {
+        margin-right: 20px;
+    }
+    li:hover > a, li:focus-within > a {
+        @include mixins.gradient();
+    }
+    .dropdown {
+        position: relative;
+    }
+    .dropdown button {
+      color: #FFF;
+      font-weight: 300;
+      font-size: 1.2em;
+    }
+    .dropdown ul {
+        @include mixins.invisible();
+        padding: 25px 0 0 0;
+        opacity: 0;
+        transition: opacity 1s ease;
+    }
+    .dropdown:hover > ul, .dropdown:focus-within > ul {
+        left: 0;
+        opacity: 1;
+    }
+    .dropdown ul li {
+        margin-bottom: 25px;
+    }
+}
