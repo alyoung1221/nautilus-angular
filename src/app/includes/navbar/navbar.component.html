@@ -7,16 +7,22 @@
             <li class="dropdown">
                 <a href="#resort">Resort</a>
                 <ul>
-                    <li><a href="#rooms">Rooms</a></li>
-                    <li><a href="#dining">Dining</a></li>
+                    <li>
+                        <a href="#rooms">Rooms</a>
+                    </li>
+                    <li>
+                        <a href="#dining">Dining</a>
+                    </li>
                 </ul>
             </li>
             <li><a href="#spa">Spa</a></li>
             <li><a href="#reservations">Reservations</a></li>
             <li class="dropdown">
-                <a routerLink="/contact">Contact Us</a>
+                <a routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Contact Us</a>
                 <ul>
-                    <li><a href="#faqs">FAQs</a></li>
+                    <li>
+                        <a href="#faqs">FAQs</a>
+                    </li>
                 </ul>
             </li>
         </ul>
