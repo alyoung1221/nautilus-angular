@@ -15,7 +15,7 @@ nav {
     > ul > li:not(:last-of-type) {
         margin-right: 20px;
     }
-    li:hover > a, li:focus-within > a {
+    li:hover > a, li:focus-within > a, .active {
         @include mixins.gradient();
     }
     .dropdown {

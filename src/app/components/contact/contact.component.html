@@ -1,0 +1,32 @@
+<h1>Contact Us</h1>
+<div class="space-between">
+    <form method="post" class="vertical" name="contact">
+        <input type="text" name="name" placeholder="Full Name *" required>
+        <div class="form-input">
+            <label for="email" class="sr-only">E-mail (required)</label>
+            <input type="email" name="email" placeholder="E-mail *" required>
+            <label for="tel" class="sr-only">Telephone</label>
+            <input type="tel" name="tel" placeholder="Telephone">  
+        </div>             
+        <label for="subject" class="sr-only">Reason for Contact (required)</label>
+        <select name="subject" required>
+            <option value="" selected disabled hidden>Reason for Contact *</option>
+            <option value="" disabled>--</option>
+            <option value="General Inquiries">General Inquiries</option>
+            <option value="Reservations">Reservations</option>
+            <option value="Technical Issues">Technical Issues</option>
+            <option value="Other">Other</option>
+        </select>
+        <label for="message" class="sr-only">Message (required)</label>
+        <textarea name="message" placeholder="Message *" required></textarea>
+        <button type="submit" class="btn-animate btn-animate-center" name="send" title="Send">Send</button>
+    </form>
+    <div>
+        <img src="assets/images/resort.jpg" alt="Spa" width="600px">    
+        <address>
+            <p><span class="material-icons">phone</span><a href="tel:5712221221">571-222-1221</a></p>
+            <p><span class="material-icons">mail_outline</span><a href="mailto:info@thebeachspa.com">info@thebeachspa.com</a></p>
+            <p><span class="material-icons">location_on</span>Koh Chang, Thailand</p>                            
+        </address>
+    </div>          
+</div>
