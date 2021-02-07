@@ -12,7 +12,7 @@ import { ContactComponent } from './components/contact/contact.component';
   declarations: [
     AppComponent,
     NavbarComponent,
-    AddressComponent
+    AddressComponent,
     FooterComponent,
     ContactComponent
   ],
