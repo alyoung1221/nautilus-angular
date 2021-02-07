@@ -8,6 +8,10 @@
     }
 
 /*Body*/
+    html, body {
+        height: 100%;
+        margin: 0;
+    }    
     body {
         background: variables.$bg-color;
         color: variables.$text-color;
@@ -15,12 +19,20 @@
     }
 
 /*Containers*/
-    .body-container {
-        width: 98%;
+    .wrapper {
+        @extend %flex;
+        flex-direction: column;
+        min-height: 100vh;
+        width: 95%;
         margin: 30px auto;
     }
 
-/*Text*/
+/*Main*/
+    main {
+        flex: 1;
+    }
+
+/*Text Styles*/
     .sr-only {
         border: 0;
         clip: rect(0,0,0,0);
@@ -48,4 +60,91 @@
 /*Icons*/
     .material-icons {
         vertical-align: middle;
+    }
+
+/*Button Animation*/
+    .btn-animate {
+        box-sizing: border-box;
+        // Using inset box-shadow instead of border for sizing simplicity
+        box-shadow: inset 0 0 0 1px variables.$btn;
+        color: #FFF;
+        font-size: inherit;
+
+        // Required, since we're setting absolute on pseudo-elements
+        position: relative;
+        vertical-align: middle;
+
+        &::before, &::after {
+            box-sizing: inherit;
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .btn-animate-center {
+        // Set up base styles, we're going to scale instead of animating width/height
+        &::before, &::after {
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            transform-origin: center; // Ensure scaling is done from the center (expands outwards)
+        }
+        // scale3d(<scale-horizontal>, <scale-vertical>, <scale-depth>);
+        &::before {
+            border-top: 1px solid variables.$btn-hover;
+            border-bottom: 1px solid variables.$btn-hover;
+            transform: scale3d(0,1,1); // Shrink only width
+        }
+        &::after {
+            border-left: 1px solid variables.$btn-hover;
+            border-right: 1px solid variables.$btn-hover;
+            transform: scale3d(1,0,1); // Shrink only height
+        }
+        &:hover::before,&:hover::after {
+            transform: scale3d(1,1,1); // Show full-size
+            transition: transform 0.5s;
+        }
+    }
+
+/*Form*/
+    ::placeholder {
+        color: #D8D8D8;
+        opacity: 0.8;
+        text-align: left;
+        @include mixins.uppercase();
+    }
+    button, input[type=button], input, select, textarea {
+        background: none;
+        border: 0;
+        color: silver;
+        font: 300 0.95em Montserrat;
+    }
+    form input, form select, form textarea {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        padding: 4px 0;
+    }
+    form input:not([type=checkbox]):not([type=radio]), form select, form textarea {
+        width: 100%;
+    }
+    form input:not([type=submit]) {
+        text-indent: 5px;
+    }
+    form [type=submit] {
+        cursor: pointer;
+        font-weight: 500;
+        height: 45px;
+        width: 120px;
+        margin-top: 35px;
+        @include mixins.uppercase();
+    }
+
+/*Address*/
+    address {
+        font-size: 14.5px;
+        
+        .material-icons {
+            margin-right: 20px;
+        }
     }
