@@ -1,9 +1,41 @@
 
+@use "css/variables";
+
 /*Address*/
     address {
-        font-size: 14.5px;
-        
+        font-size: .9em;
+        font-style: initial;
+
+        > div {
+            margin-bottom: 25px;
+
+            a, p {
+                font-family: variables.$sub-font;
+                font-style: italic;
+            }
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+                &:first-of-type {
+                    margin-bottom: 15px;
+                }
+                > h4 {
+                    display: inline;
+                    font-size: 1.16em;
+                }
+            }
+        }
+
         .material-icons {
             margin-right: 20px;
+
+            &.lg {
+                font-size: 2.15em;
+            }
         }
     }
