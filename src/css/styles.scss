@@ -34,7 +34,7 @@
     }
     section h1 {
         font-size: 2em;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
     }
 
 /*Text Styles*/
@@ -126,22 +126,23 @@
         color: silver;
         font: 400 .98em variables.$main-font;
     }
-    form.vertical > * {
+    form.vertical > *, form > div, form label {
         display: block;
         margin-bottom: 30px;
+    }
+    form label {
+        margin-bottom: 25px;
+        @include mixins.uppercase();
     }
     form input, form select, form textarea {
         border-bottom: 1px solid rgba(255, 255, 255, 0.5);
         padding: 4px 0;
     }
-    form input:not([type=checkbox]):not([type=radio]), form select, form textarea {
+    form input:not([type=checkbox]):not([type=radio]), form select, form textarea, [type=submit] {
         width: 100%;
     }
     form input:not([type=submit]) {
         text-indent: 5px;
-    }
-    input:not([type=checkbox]):not([type=radio]), select, textarea {
-        width: 100%;
     }
     input:not([type=submit]) {
         text-indent: 5px; 
@@ -163,8 +164,8 @@
     }
     form [type=submit] {
         cursor: pointer;
-        height: 45px;
-        width: 120px;
+        font-size: 1.05em;
+        height: 48px;
         margin-top: 35px;
         @include mixins.uppercase();
     }
