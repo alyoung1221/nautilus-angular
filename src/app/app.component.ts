@@ -15,7 +15,10 @@ export class AppComponent {
     convertModelValue: true,
     minDate: "today",
     monthSelectorType: "dropdown",
-    wrap: true
+    wrap: true,
+    parseDate: (datestr) => {
+      return new Date(datestr);
+    }
   };
   
   public constructor(private titleService: Title) { }
