@@ -1,5 +1,8 @@
+import { environment } from 'src/environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from "@angular/fire";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { FormsModule } from '@angular/forms';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgxNumberSpinnerModule } from 'ngx-number-spinner';
@@ -24,6 +27,8 @@ import { ReservationComponent } from './components/reservation/reservation.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
     FormsModule, 
     FlatpickrModule.forRoot(),    
     NgxNumberSpinnerModule
