@@ -3,11 +3,12 @@ import { AppComponent } from "src/app/app.component";
 import { SearchService } from "src/app/services/search.service";
 
 @Component({
-  selector: "app-reservation",
-  templateUrl: "./reservation.component.html",
-  styleUrls: ["./reservation.component.scss"]
+  selector: "app-search",
+  templateUrl: "./search.component.html",
+  styleUrls: ["./search.component.scss"]
 })
-export class ReservationComponent implements OnInit {
+
+export class SearchComponent implements OnInit {
   duration: { from: Date, to: Date };
   rooms: Array<Object>;
   accommodations: Array<Object>;

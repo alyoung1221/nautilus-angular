@@ -13,7 +13,7 @@ import { NavbarComponent } from './includes/navbar/navbar.component';
 import { AddressComponent } from './includes/address/address.component';
 import { FooterComponent } from './includes/footer/footer.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { ReservationComponent } from './components/reservation/reservation.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { ReservationComponent } from './components/reservation/reservation.compo
     AddressComponent,
     FooterComponent,
     ContactComponent,
-    ReservationComponent
+    SearchComponent
   ],
   imports: [
     BrowserModule,
