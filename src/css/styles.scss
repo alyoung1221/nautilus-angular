@@ -1,6 +1,7 @@
 @use 'variables';
 @use 'mixins';
 @use 'inheritance';
+@import "flatpickr/dist/flatpickr.css";
 
 /*Focus*/
     *:focus {
@@ -19,7 +20,7 @@
     }
 
 /*Containers*/
-    .wrapper {
+    .site-wrapper {
         @extend %flex;
         flex-direction: column;
         min-height: 100vh;
@@ -64,7 +65,14 @@
 
 /*Icons*/
     .material-icons {
+        color: #FFF;
         vertical-align: middle;
+    }
+
+/*Details Element*/
+    summary {
+        margin: 50px 0 40px 0;
+        @include mixins.uppercase();
     }
 
 /*Button Animation*/
@@ -113,64 +121,23 @@
         }
     }
 
-/*Form*/
-    ::placeholder {
-        color: #D8D8D8;
-        opacity: 0.8;
-        text-align: left;
-        @include mixins.uppercase();
-    }
-    button, input[type=button], input, select, textarea {
-        background: none;
-        border: 0;
-        color: silver;
-        font: 400 .98em variables.$main-font;
-    }
-    form.vertical > *, form > div, form label {
-        display: block;
-        margin-bottom: 30px;
-    }
-    form label {
-        margin-bottom: 25px;
-        @include mixins.uppercase();
-    }
-    form input, form select, form textarea {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-        padding: 4px 0;
-    }
-    form input:not([type=checkbox]):not([type=radio]), form select, form textarea, [type=submit] {
-        width: 100%;
-    }
-    form input:not([type=submit]) {
-        text-indent: 5px;
-    }
-    input:not([type=submit]) {
-        text-indent: 5px; 
-    }
-    select {
-        height: 28px;
-        @include mixins.uppercase();
-    }
-    select option, textarea {
-        text-transform: initial;
-    }
-    select option:not(:disabled) {
-        color: #000;
-        font: .93em variables.$sub-font;
-    }
-    textarea {
-        height: 120px;
-        resize: none;
-    }
-    form [type=submit] {
-        cursor: pointer;
-        font-size: 1.05em;
-        height: 48px;
-        margin-top: 35px;
-        @include mixins.uppercase();
-    }
-
-    /*Input Containers*/
+/*Forms*/    
+    /*Form Wrappers*/
+        form.half-width {
+            input:not([type=checkbox]):not([type=radio]), select, textarea, [type=submit] {
+                width: 50vw;
+            }
+            [type=submit] {
+                height: 50px;
+            }
+        }
+        form.vertical > *, form > div, form label {
+            display: block;
+            margin-bottom: 30px;
+        }
+        .form-flex > div {
+            margin-right: 30px;
+        }
         .form-input {
             input {
                 width: 240px !important;
@@ -178,4 +145,89 @@
             input:first-of-type {
                 margin-right: 20px;
             }
+        }
+    
+    /*Form Elements*/
+        ::placeholder {
+            color: #D8D8D8;
+            font-family: variables.$main-font;
+            opacity: 0.8;
+            text-align: left;
+            @include mixins.uppercase();
+        }
+        button, input, select, textarea {
+            background: none;
+            border: 0;
+        }
+        input, select, textarea {
+            color: silver;
+            font: 400 .98em variables.$sub-font;
+        }
+        form label {
+            margin-bottom: 25px;
+            @include mixins.uppercase();
+        }
+        form input, form select, form textarea {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 4px 0;
+        }
+        form input:not([type=checkbox]):not([type=radio]), form select, form textarea, form [type=submit] {
+            width: 100%;
+        }    
+        form select option, textarea {
+            text-transform: initial;
+        }
+        form input[type=checkbox] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border: 1.5px solid variables.$btn;
+            border-radius: 3px;
+            width: 14px;
+            height: 14px;
+            vertical-align: bottom;
+        }
+        form input[type=checkbox]:checked, form input[type=checkbox]:focus-visible, form input[type=checkbox]:hover {
+            border-color: variables.$btn-hover;
+        }
+        form input:not([type=submit]) {
+            text-indent: 5px;
+        }
+        .select-wrapper {
+            margin: 45px 0;
+        }
+        form > select {
+            height: 28px;
+            @include mixins.uppercase();
+        }
+        form select option:not(:disabled) {
+            color: #000;
+            font: .93em variables.$sub-font;
+        }
+        form textarea {
+            height: 120px;
+            resize: none;
+        }
+        .flatpickr-current-month span.cur-month:hover {
+            background: initial;
+        }
+        .horizontal-wrapper {
+            width: 218px;
+            
+            div {
+                border-bottom: .5px solid rgba(255, 255, 255, 0.5) !important;
+                border-left: 0;
+                border-right: 0;
+            }
+        }
+        .wrapper button svg {
+            fill: #FFF !important;
+        } 
+        form [type=submit] {
+            cursor: pointer;
+            font-family: variables.$main-font;
+            font-size: 1.05em;
+            height: 45px;
+            margin-top: 35px;
+            @include mixins.uppercase();
         }
