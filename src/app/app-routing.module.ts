@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContactComponent } from './components/contact/contact.component';
-import { ReservationComponent } from './components/reservation/reservation.component';
+import { SearchComponent } from './components/search/search.component';
 
 const routes: Routes = [
   { path: 'contact', component: ContactComponent },
-  { path: 'reservations', component: ReservationComponent }
+  { path: 'reservations/check-availability', component: SearchComponent }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

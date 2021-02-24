@@ -1,0 +1,18 @@
+@use 'css/variables';
+
+form {
+    .flex label {
+        margin-right: 35px;
+    }
+    > div {
+        margin-bottom: 50px;
+    }
+}
+label {
+    i {
+        margin-left: 10px;
+    }
+    [type=checkbox] {
+        margin-right: 10px;
+    }
+}
