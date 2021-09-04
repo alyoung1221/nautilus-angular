@@ -2,7 +2,7 @@
 <form method="post" name="availability" class="half-width" validate>
     <div>
         <label for="duration">Travel Dates<i class="fas fa-plane"></i></label>
-        <div class="flatpickr" mwlFlatpickr mode="range" showMonths="2" [options]="app.options">
+        <div class="flatpickr" mwlFlatpickr [convertModelValue]="true" mode="range" showMonths="2" [(ngModel)]="duration" [ngModelOptions]="{standalone: true}" [options]="app.options">
             <input type="date" id="duration" name="duration" placeholder="mm/dd/yyyy - mm/dd/yyyy" #travelDuration data-input>
             <button class="material-icons" title="Toggle Calendar" data-toggle>calendar_today</button>
             <button class="material-icons" title="Clear" data-clear>clear</button>
@@ -10,7 +10,7 @@
     </div>
     <div>
         <label for="rooms">Rooms<i class="material-icons">king_bed</i></label>
-        <ngx-number-spinner [value]="1" [min]="1" [max]="4" [(ngModel)]="rooms.length" (change)="newRoom()" name="rooms"></ngx-number-spinner>
+        <ngx-number-spinner [value]="1" [min]="1" [max]="MAX_ROOMS" (change)="updateRooms($event)" name="rooms"></ngx-number-spinner>
     </div>    
     <div class="form-section">
         <div *ngFor="let x of [].constructor(rooms.length); index as i">
@@ -26,12 +26,12 @@
                         <ngx-number-spinner [value]="0" [min]="0" [max]="5" [(ngModel)]="rooms[i].children.length" [ngModelOptions]="{standalone: true}" name="children"></ngx-number-spinner>
                     </div>                 
                 </div>
-                <div class="select-wrapper" *ngFor="let x of [].constructor(rooms[i].children.length); index as y">
-                    <label>Child {{ y + 1 }}</label>
-                    <select [(ngModel)]="rooms[i].children[y]" [ngModelOptions]="{standalone: true}">
-                        <option [ngValue]="undefined">--</option>
-                        <option value="< 1">< 1</option>
-                        <option *ngFor="let y of [].constructor(17); index as age" value="{{ age + 1 }}">{{ age + 1}}</option>
+                <div class="select-wrapper" *ngFor="let y of [].constructor(rooms[i].children.length); index as c">
+                    <label>Child {{ c + 1 }}</label>
+                    <select [(ngModel)]="rooms[i].children[c]" [ngModelOptions]="{standalone: true}">
+                        <option [ngValue]="undefined" disabled>--</option>
+                        <option value="1">1</option>
+                        <option *ngFor="let a of [].constructor(17); index as age" value="{{ age + 1 }}">{{ age + 1}}</option>
                     </select>
                 </div>                
             </details>

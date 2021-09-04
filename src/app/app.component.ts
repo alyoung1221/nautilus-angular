@@ -10,9 +10,9 @@ import { FlatpickrDefaultsInterface } from 'angularx-flatpickr/flatpickr-default
 export class AppComponent {
   options: FlatpickrDefaultsInterface = {
     altInput: true,
-    altFormat: "m-j-Y",
-    dateFormat: "m-j-Y",
+    altFormat: "m-j-Y",    
     convertModelValue: true,
+    dateFormat: "m-j-Y",
     minDate: "today",
     monthSelectorType: "dropdown",
     wrap: true,

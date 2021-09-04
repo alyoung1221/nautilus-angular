@@ -1,0 +1,81 @@
+<h1 *ngIf="rooms.length > 1; else single">Room {{ current }} of {{ rooms.length }}</h1>
+<ng-template #single>
+    <h1>Select Room</h1>
+</ng-template>
+<form method="post" class="flex" data-popup>
+    <div>
+        <label for="duration">Travel Dates<i class="fas fa-plane"></i></label>
+        <div class="flatpickr" mwlFlatpickr mode="range" showMonths="2" wrap="true" [convertModelValue]="true" [(ngModel)]="duration" [ngModelOptions]="{standalone: true}" [options]="app.options">
+            <input type="date" id="duration" name="duration" placeholder="mm/dd/yyyy - mm/dd/yyyy" #travelDuration data-input>
+            <button class="material-icons" title="Toggle Calendar" data-toggle>calendar_today</button>
+            <button class="material-icons" title="Clear" data-clear>clear</button>
+        </div>
+    </div>
+    <div>
+        <label for="rooms">Rooms<i class="material-icons">king_bed</i></label>    
+        <div class="popup-form">
+            <div class="readonly" (click)="toggleForm(!invisible)">
+                <input type="text" value="{{ rooms.length }} rooms, {{ occupants }} guests" readonly>
+                <div class="caret-down"></div>
+            </div>
+            <div class="form-body" [class.invisible]="invisible" (clickOutside)="toggleForm(true)" [exclude]="'.readonly'">
+                <div class="flex">
+                    <label for="rooms">Rooms</label>
+                    <ngx-number-spinner [value]="rooms.length" [min]="1" [max]="4" name="rooms" (change)="updateRooms($event)"></ngx-number-spinner>
+                </div> 
+                <label>Guests</label>
+                <div *ngFor="let x of [].constructor(rooms.length); index as i">
+                    <details open>
+                        <summary>Room {{ i + 1 }}</summary>
+                        <div class="space-between">
+                            <div class="flex">
+                                <label for="rooms">Adults<i class="material-icons">people</i></label>
+                                <ngx-number-spinner [value]="1" [min]="1" [max]="8" [(ngModel)]="rooms[i].adults" [ngModelOptions]="{standalone: true}" name="adults"></ngx-number-spinner>
+                            </div>
+                            <div class="flex">
+                                <label for="rooms">Children<i class="fas fa-child"></i></label>                                 
+                                <ngx-number-spinner [value]="0" [min]="0" [max]="5" [(ngModel)]="rooms[i].children.length" [ngModelOptions]="{standalone: true}" name="children"></ngx-number-spinner>
+                            </div>                 
+                        </div>
+                        <div class="flex">
+                            <label for="{{ accommodation.id }}" *ngFor="let accommodation of accommodations">
+                                <input type="checkbox" name="accommodation" id="{{ accommodation.id }}" [(ngModel)]="accommodation.selected" [checked]="accommodation.selected">{{accommodation.name}}
+                            </label>            
+                        </div>
+                    </details>
+                </div>
+            </div>            
+        </div>    
+    </div>
+    <button type="submit" class="btn-animate btn-animate-center" name="search" title="Check Availability" (click)="checkAvailability(travelDuration.value)">Check Availability</button>
+</form>
+<ng-container *ngIf="results$ | loading | async as suites">    
+    <ng-template [ngIf]="suites.loading">
+        <mat-progress-spinner
+        [color]="color"
+        [mode]="mode"
+        [value]="value">
+        </mat-progress-spinner>  
+    </ng-template>
+    <ng-template [ngIf]="suites.value">
+        <div class="gallery" *ngIf="suites.value.length > 0; else elseBlock">
+            <ng-container *ngFor="let suite of suites.value">
+                <div class="space-between" *ngFor="let room of suite.rooms">
+                    <img src="{{ suite.image }}" width="320">
+                    <div>
+                        <h3>{{ suite.name }} - {{ room.bed }}</h3>
+                        <p>{{ suite.tagline }} | {{ suite.occupants }} occupants</p>
+                        <p>{{ suite.desc }}</p>
+                        <button class="btn-animate btn-animate-center" title="Select Room" (click)="selectRoom(suite.id, room.id)">Select Room</button>             
+                    </div>
+                </div>             
+            </ng-container>
+        </div>
+    </ng-template>
+    <ng-template [ngIf]="suites.error">
+        <p>{{ suites.error }}</p>
+    </ng-template>
+    <ng-template #elseBlock> 
+        <p>No rooms found matching your search.</p> 
+    </ng-template>
+</ng-container>

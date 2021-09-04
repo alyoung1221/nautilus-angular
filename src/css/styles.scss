@@ -18,6 +18,9 @@
         color: variables.$text-color;
         font-family: variables.$main-font;
     }
+    .invisible {
+        display: none;
+    }
 
 /*Containers*/
     .site-wrapper {
@@ -64,18 +67,41 @@
     }
 
 /*Icons*/
-    .material-icons {
+    form:not([data-popup]) .material-icons {
         color: #FFF;
+    }
+    .material-icons {
         vertical-align: middle;
     }
 
+    /*Mat Progress Spinner*/
+        .mat-progress-spinner.mat-progress-spinner-indeterminate-animation[mode=indeterminate] {
+            height: 32px !important;
+            width: 32px !important;
+
+            svg {
+                height: 32px !important;
+                width: 32px !important;
+            }
+        }
+        .mat-progress-spinner circle, .mat-spinner circle {
+            stroke: #FFF;
+        }
+
 /*Details Element*/
-    summary {
+    form summary {
         margin: 50px 0 40px 0;
         @include mixins.uppercase();
     }
-
-/*Button Animation*/
+    [data-popup] summary {
+        margin: 20px 0;
+    }
+/*Buttons*/
+    button {
+        cursor: pointer;
+        @include mixins.uppercase();
+        font-family: variables.$main-font;
+    }
     .btn-animate {
         box-sizing: border-box;
         // Using inset box-shadow instead of border for sizing simplicity
@@ -127,6 +153,9 @@
             input:not([type=checkbox]):not([type=radio]), select, textarea, [type=submit] {
                 width: 50vw;
             }
+            .flatpickr input {
+                width: 400px !important;
+            }
             [type=submit] {
                 height: 50px;
             }
@@ -135,8 +164,8 @@
             display: block;
             margin-bottom: 30px;
         }
-        .form-flex > div {
-            margin-right: 30px;
+        form.flex > div {
+            margin-right: 100px;
         }
         .form-input {
             input {
@@ -163,12 +192,19 @@
             color: silver;
             font: 400 .98em variables.$sub-font;
         }
-        form label {
+        form label {            
             margin-bottom: 25px;
             @include mixins.uppercase();
+
+            i {
+                margin-left: 10px;
+            }
+            [type=checkbox] {
+                margin-right: 10px;
+            }
         }
         form input, form select, form textarea {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            border-bottom: 1px solid silver;
             padding: 4px 0;
         }
         form input:not([type=checkbox]):not([type=radio]), form select, form textarea, form [type=submit] {
@@ -181,13 +217,13 @@
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
-            border: 1.5px solid variables.$btn;
+            border: 1.5px solid;
             border-radius: 3px;
             width: 14px;
             height: 14px;
             vertical-align: bottom;
         }
-        form input[type=checkbox]:checked, form input[type=checkbox]:focus-visible, form input[type=checkbox]:hover {
+        form input[type=checkbox][ng-reflect-model=true], form input[type=checkbox]:checked, form input[type=checkbox]:focus-visible, form input[type=checkbox]:hover {
             border-color: variables.$btn-hover;
         }
         form input:not([type=submit]) {
@@ -196,8 +232,9 @@
         .select-wrapper {
             margin: 45px 0;
         }
-        form > select {
+        form select {
             height: 28px;
+            min-width: 150px;
             @include mixins.uppercase();
         }
         form select option:not(:disabled) {
@@ -211,7 +248,10 @@
         .flatpickr-current-month span.cur-month:hover {
             background: initial;
         }
-        .horizontal-wrapper {
+        .flatpickr input {
+            width: 300px !important;
+        }
+        form:not([data-popup]) .horizontal-wrapper {
             width: 218px;
             
             div {
@@ -220,14 +260,113 @@
                 border-right: 0;
             }
         }
-        .wrapper button svg {
+        form:not([data-popup]) .wrapper button svg {
             fill: #FFF !important;
         } 
         form [type=submit] {
-            cursor: pointer;
             font-family: variables.$main-font;
             font-size: 1.05em;
             height: 45px;
             margin-top: 35px;
             @include mixins.uppercase();
         }
+
+        /*Popup Forms*/
+        .popup-form {
+            position: relative;
+        }
+        .popup-form .form-body {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: calc(100% - 1px);
+            max-height: 400px;
+            width: 600px;
+            overflow-y: auto;
+            background: #FFF;
+            color: #000;
+            padding: 20px 15px;
+            z-index: 1;
+
+            .wrapper {
+                margin-left: 20px;
+            }
+        }
+        .readonly {            
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+        .readonly input {
+            width: 200px;
+            @include mixins.uppercase();
+        }
+        [class^="caret"] {
+            display: inline-block;
+            position: absolute;
+            top: 30%;
+            right: 0;
+            width: 0;
+            height: 0;
+            border: solid silver;
+            border-width: 0 2px 2px 0;
+            padding: 2.5px;
+        }
+        .caret-down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+
+        /* spinner animation - source: loading.io */
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #333;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #333 transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  
+  /* LoadingDirective overlay styles */
+  .loading-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: white;
+    opacity: 0.7;
+    z-index: 10000;
+  }
+  

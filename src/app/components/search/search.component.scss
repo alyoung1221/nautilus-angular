@@ -1,4 +1,4 @@
-@use 'css/variables';
+@use '/src/css/variables';
 
 form {
     .flex label {
@@ -6,13 +6,5 @@ form {
     }
     > div {
         margin-bottom: 50px;
-    }
-}
-label {
-    i {
-        margin-left: 10px;
-    }
-    [type=checkbox] {
-        margin-right: 10px;
     }
 }

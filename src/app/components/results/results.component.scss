@@ -1,0 +1,31 @@
+form.flex {
+    [type=submit] {
+        width: 250px;
+    }
+}
+.gallery {
+    > div {
+        margin-bottom: 80px;
+        
+        img {
+            transition: 1s;
+            cursor: pointer;
+        }
+        img:hover {
+            transform: scale(1.05);
+        }
+        > div {
+            max-width: 70%;
+        }   
+        button {
+            display: block;
+            width: 320px;
+            padding: 14px 25px;
+            margin-top: 45px;
+            text-align: center;
+        }
+    }  
+    > div:nth-of-type(even) img {
+        order: 2;
+    }
+}
